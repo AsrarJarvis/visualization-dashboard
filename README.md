@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Instrunction to Run this app
+
+1. Unzip the file
+2. Open folder in VS Code or editor of your choise.
+3. Change directory to src folder -> cd src
+4. Run npm install to install all dependencies.
+5. Once installation in done, Run npm start
+6. Open http://localhost:3000 in new tab.
+
+### Thank You
