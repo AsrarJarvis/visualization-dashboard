@@ -1,4 +1,5 @@
 import React from 'react';
+import { BarChartOutlined } from '@ant-design/icons';
 
 const CustomBarChart = ({ widget }) => {
   if (!Array.isArray(widget.widgetData) || widget.widgetData.length === 0) {
@@ -15,6 +16,7 @@ const CustomBarChart = ({ widget }) => {
             width: '100%',
           }}
         >
+          <BarChartOutlined style={{ fontSize: '40px', color: '#8884d8', marginBottom: '10px' }} />
           <div>No graph data available.</div>
         </div>
       </div>
