@@ -36,22 +36,25 @@ const DashboardComponent = () => {
   }, [selectedCategory, dispatch]);
 
   useEffect(() => {
-    if (isDrawerVisible) {
-      if (activeTab) {
-        dispatch(setSelectedCategory(categories.find(category => category.categoryId === activeTab)));
-      } else if (categories.length > 0) {
-        dispatch(setSelectedCategory(categories[0]));
-        dispatch(setActiveTab(categories[0].categoryId));
-      }
+  if (isDrawerVisible) {
+    if (activeTab) {
+      const selectedCategory = categories.find(category => category.categoryId === activeTab);
+      dispatch(setSelectedCategory(selectedCategory));
+    } else if (categories.length > 0) {
+      const firstCategory = categories[0];
+      dispatch(setSelectedCategory(firstCategory));
+      dispatch(setActiveTab(firstCategory.categoryId));
     }
-  }, [isDrawerVisible, categories, dispatch, activeTab]);
+  }
+}, [isDrawerVisible, categories, dispatch, activeTab]);
 
   const handleTabChange = (key) => {
-    const selectedTabCategory = categories.find(category => category.categoryId.toString() === key);
-    if (selectedTabCategory) {
-      dispatch(setSelectedCategory(selectedTabCategory));
-    }
-  };
+  const selectedTabCategory = categories.find(category => category.categoryId.toString() === key);
+  if (selectedTabCategory) {
+    dispatch(setSelectedCategory(selectedTabCategory));
+  }
+  dispatch(setActiveTab(key));
+};
 
   const handleAddNewWidget = (values) => {
   const newWidget = {
