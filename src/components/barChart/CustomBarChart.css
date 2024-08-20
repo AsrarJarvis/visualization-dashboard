@@ -1,0 +1,37 @@
+.centered-container {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+:root {
+    --color-0: #0088FE;
+    --color-1: #00C49F;
+    --color-2: #FFBB28;
+    --color-3: #FF8042;
+}
+
+.bar {
+    height: 15px;
+    text-align: center;
+    color: #fff;
+    padding: 5px 0;
+    margin-top: 30px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 0;
+    background-color: var(--color-0);
+}
+
+.bar.first {
+    border-radius: 12px 0 0 12px;
+}
+
+.bar.last {
+    border-radius: 0 12px 12px 0;
+}

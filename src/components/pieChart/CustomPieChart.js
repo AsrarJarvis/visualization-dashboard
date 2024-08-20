@@ -1,6 +1,7 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, Label } from 'recharts';
 import { BarChartOutlined } from '@ant-design/icons';
+import { COLORS } from '../../constant/constant';
 
 
 const CustomPieChart = ({ widget }) => {
@@ -31,8 +32,6 @@ const CustomPieChart = ({ widget }) => {
     const key = Object.keys(item)[0];
     return { name: key, value: item[key] };
   });
-
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
   return (
     <>

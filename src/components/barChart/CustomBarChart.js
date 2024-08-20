@@ -1,21 +1,14 @@
 import React from 'react';
 import { BarChartOutlined } from '@ant-design/icons';
+import { COLORS } from '../../constant/constant';
+import './CustomBarChart.css'; 
 
 const CustomBarChart = ({ widget }) => {
   if (!Array.isArray(widget.widgetData) || widget.widgetData.length === 0) {
     return (
       <div style={{ textAlign: 'center', padding: '20px' }}>
         <div style={{ fontSize: '14px', fontWeight: 'bold' }}>{widget.widgetName}</div>
-        <div
-          style={{
-            height: 200,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-          }}
-        >
+        <div className='centered-container'>
           <BarChartOutlined style={{ fontSize: '40px', color: '#8884d8', marginBottom: '10px' }} />
           <div>No graph data available.</div>
         </div>
@@ -24,39 +17,27 @@ const CustomBarChart = ({ widget }) => {
   }
 
   const total = widget.widgetData.reduce((sum, item) => sum + Object.values(item)[0], 0);
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
   return (
     <>
-      <div style={{ fontSize: '14px', fontWeight: 'bold', float: 'left' }}>{total} {widget.widgetName}</div>
+      <div style={{ fontSize: '14px', fontWeight: 'bold', float: 'left' }}>
+        {total} {widget.widgetName}
+      </div>
       <div style={{ display: 'flex', width: '100%', marginTop: '30px' }}>
         {widget.widgetData.map((item, index) => {
           const key = Object.keys(item)[0];
           const value = item[key];
           const percent = (value / total) * 100;
+          const barStyle = {
+            width: `${percent}%`,
+            backgroundColor: COLORS[index % COLORS.length],
+          };
 
           return (
             <div
               key={index}
-              style={{
-                width: `${percent}%`,
-                height: '15px',
-                backgroundColor: COLORS[index % COLORS.length],
-                textAlign: 'center',
-                color: '#fff',
-                padding: '5px 0',
-                marginTop: 30,
-                fontSize: '12px',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                borderRadius:
-                  index === 0
-                    ? '12px 0 0 12px'
-                    : index === widget.widgetData.length - 1
-                    ? '0 12px 12px 0'
-                    : 'none',
-              }}
+              className={getClassName(index, widget)}
+              style={barStyle}
             />
           );
         })}
@@ -99,6 +80,13 @@ const CustomBarChart = ({ widget }) => {
       </div>
     </>
   );
+};
+
+// Function to determine the class name based on index
+const getClassName = (index, widget) => {
+  if (index === 0) return 'bar first';
+  if (index === widget.widgetData.length - 1) return 'bar last';
+  return 'bar';
 };
 
 export default CustomBarChart;
